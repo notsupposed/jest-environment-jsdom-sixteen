@@ -3,7 +3,7 @@ const { installCommonGlobals } = require('jest-util');
 const { ModuleMocker } = require('jest-mock');
 const {
   JestFakeTimers: LegacyFakeTimers,
-  LolexFakeTimers,
+  // LolexFakeTimers, // SK: LolexFakeTimers is missing in Jest 24
 } = require('@jest/fake-timers');
 const { JSDOM, VirtualConsole } = require('jsdom');
 
@@ -67,7 +67,8 @@ module.exports = class JSDOMEnvironment {
       timerConfig,
     });
 
-    this.fakeTimersLolex = new LolexFakeTimers({ config, global });
+    // this.fakeTimersLolex = new LolexFakeTimers({ config, global });
+    this.fakeTimersLolex = this.fakeTimers // SK: LolexFakeTimers is missing in Jest 24 
   }
 
   async setup() {}
